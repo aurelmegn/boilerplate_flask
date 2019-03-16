@@ -1,0 +1,8 @@
+{
+  "name": "flaskboilerplate",
+  "version": "1.0.0",
+  "description": "flask boilerplate",
+  "main": "index.js",
+  "author": "<shiftsh@pm.me>",
+  "license": "MIT"
+}
