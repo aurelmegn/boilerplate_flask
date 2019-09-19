@@ -6,3 +6,5 @@ geckodriver.log
 .cache/
 .idea
 *.log
+src/node_modules
+

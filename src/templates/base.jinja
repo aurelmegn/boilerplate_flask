@@ -5,13 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% block css %}{% endblock %}
+    {% block css %}
+        {{ webpack['public/css/app.css'] }}
+    {% endblock %}
     <title>
         {% block title %}{% endblock %}
     </title>
 </head>
 <body>
+    {% block navbar %}{% endblock %}
     {% block body %}{% endblock %}
-    {% block js %}{% endblock %}
+
+    {% block js %}
+        {{ webpack['public/js/app.js'] }}
+    {% endblock %}
 </body>
 </html>

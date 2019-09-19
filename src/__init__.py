@@ -1,13 +1,27 @@
 # Import flask and template operators
 from flask import Flask, render_template
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_sqlalchemy import SQLAlchemy
+from flask_webpackext import FlaskWebpackExt
+from src.utils.format_datetime import date_format_datetime
 
 # Define the WSGI application object
-app = Flask(__name__)
+app = Flask(__name__, static_folder="public")
 
 # Configurations
 app.config.from_object('config')
-from src.controllers import *
 
+# Sql alchemy
+db = SQLAlchemy(app)
+
+#Template engine setup
+app.jinja_env.filters['datetime'] = date_format_datetime
+
+# debug toolbar
+toolbar = DebugToolbarExtension(app)
+FlaskWebpackExt(app)
+
+from src.controllers import *
 
 # Sample HTTP error handling
 @app.errorhandler(404)

@@ -21,3 +21,8 @@ CSRF_SESSION_KEY = "secret"
 
 # Secret key for signing cookies
 SECRET_KEY = "YMNx&VZ<:85#=61_dUr\x0b*)vL"
+
+SQLALCHEMY_DATABASE_URI = "sqlite:///./var/data.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+WEBPACKEXT_MANIFEST_PATH = "manifest.json"
+
