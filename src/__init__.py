@@ -1,25 +1,35 @@
 # Import flask and template operators
 from flask import Flask, render_template
-from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
-from flask_webpackext import FlaskWebpackExt
+from flask_webpackext import FlaskWebpackExt, WebpackBundleProject
 from src.utils.format_datetime import date_format_datetime
+from dynaconf import FlaskDynaconf
+
+webpack_project = WebpackBundleProject(
+    __name__, project_folder="assets", config_path="./public/entrypoint.json"
+)
 
 # Define the WSGI application object
 app = Flask(__name__, static_folder="public")
 
-# Configurations
-app.config.from_object('config')
+FlaskDynaconf(app)
 
+FlaskWebpackExt(app)
+
+app.config.update(dict(WEBPACKEXT_PROJECT=webpack_project))
+
+
+if app.config.get("ENV").startswith("dev"):
+    from flask_debugtoolbar import DebugToolbarExtension
+
+    # debug toolbar
+    toolbar = DebugToolbarExtension(app)
+    
 # Sql alchemy
 db = SQLAlchemy(app)
 
-#Template engine setup
+# Template engine setup
 app.jinja_env.filters['datetime'] = date_format_datetime
-
-# debug toolbar
-toolbar = DebugToolbarExtension(app)
-FlaskWebpackExt(app)
 
 from src.controllers import *
 

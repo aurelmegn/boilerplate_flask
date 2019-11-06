@@ -1,0 +1,37 @@
+[default]
+
+THREADS_PER_PAGE = 2
+
+CSRF_ENABLED = "True"
+WTF_CSRF_CHECK_DEFAULT = "True"
+
+WEBPACKEXT_MANIFEST_PATH = "manifest.json"
+
+SECURITY_PASSWORD_HASH = "bcrypt"
+SECURITY_POST_LOGIN_VIEW = "/dashboard"
+SECURITY_UNAUTHORIZED_VIEW = "/login"
+SECURITY_LOGIN_USER_TEMPLATE = "security/login.jinja"
+
+[production]
+
+# Statement for enabling the development environment
+DEBUG = "False"
+
+# Secret key for signing cookies
+SECRET_KEY = "YMNx&VZ<:85#=61_dUr\\x0b*)vL"
+
+SQLALCHEMY_DATABASE_URI = "sqlite:///./var/data.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = "True"
+WEBPACKEXT_MANIFEST_PATH = "manifest.json"
+
+[developement]
+
+# Statement for enabling the development environment
+DEBUG = "True"
+
+# Secret key for signing cookies
+SECRET_KEY = "YMNx&VZ<:85#=61_dUr\\x0b*)vL"
+
+SQLALCHEMY_DATABASE_URI = "sqlite:///./var/data.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = "True"
+WEBPACKEXT_MANIFEST_PATH = "manifest.json"
